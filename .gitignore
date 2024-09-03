@@ -1,2 +1,7 @@
 
 /venv
+/app/__pycache__
+/app/models/__pycache__
+/app/routes/__pycache__
+/app/service/__pycache__
+/app/controller/__pycache__
