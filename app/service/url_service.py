@@ -11,5 +11,5 @@ def get_original_url(original_url=None, shortened_url=None):
     if original_url:
         return URL.query.filter_by(original_url=original_url).first()
     if shortened_url:
-        return URL.query.filter_by(shortened_path=shortened_url).first()
+        return URL.query.filter_by(shortened_url=shortened_url).first()
     return None
