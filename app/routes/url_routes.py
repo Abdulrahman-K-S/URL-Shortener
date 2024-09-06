@@ -11,7 +11,7 @@ original_url_model = url_bp.model(
     }
 )
 
-@url_bp.route('/', endpoint='create')
+@url_bp.route('/api/', endpoint='create')
 class Create(Resource):
     @url_bp.expect(original_url_model)
     def post(self):
@@ -22,7 +22,7 @@ class Create(Resource):
         shortened_url = create_short_url(original_url)
         return {'short_url': shortened_url}, 201
 
-@url_bp.route('/<shortened_url>', endpoint='redirect')
+@url_bp.route('/api/<shortened_url>', endpoint='redirect')
 class Redirect(Resource):
     def get(self, shortened_url):
         return redirect_to_original(shortened_url)
