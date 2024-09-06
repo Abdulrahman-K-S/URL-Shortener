@@ -8,6 +8,8 @@ class URL(db.Model):
     This class contains the attributes for the URL to be able
     to map the shortened url to it's original one
     """
+    __tablename__ = 'urls'
+
     id = db.Column(db.Integer, primary_key=True)
     original_url = db.Column(db.String(2048), nullable=False)
     shortened_url = db.Column(db.String(64), nullable=False)
@@ -20,4 +22,6 @@ class URL(db.Model):
         self.shortened_url = self.generate_shortened_url()
     
     def generate_shortened_url(self):
+        if not self.original_url:
+            raise ValueError("original_url cannot be None")
         return hashlib.md5(self.original_url.encode()).hexdigest()[:128]
