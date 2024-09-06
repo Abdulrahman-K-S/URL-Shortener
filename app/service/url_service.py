@@ -1,4 +1,4 @@
-from models.url import URL
+from ..models import URL
 from app import db
 
 def save_url(original_url):
