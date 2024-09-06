@@ -1,1 +1,1 @@
-from .url_controller import create_short_url
+from .url_controller import create_short_url, redirect_to_original
