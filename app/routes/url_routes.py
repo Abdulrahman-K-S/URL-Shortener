@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource, fields
 from flask import request
-from ..controller import create_short_url
+from ..controller import create_short_url, redirect_to_original
 
 url_bp = Namespace('url_bp', description="URL Operations")
 
@@ -21,3 +21,8 @@ class Create(Resource):
     
         shortened_url = create_short_url(original_url)
         return {'short_url': shortened_url}, 201
+
+@url_bp.route('/<shortened_url>', endpoint='redirect')
+class Redirect(Resource):
+    def get(self, shortened_url):
+        return redirect_to_original(shortened_url)
