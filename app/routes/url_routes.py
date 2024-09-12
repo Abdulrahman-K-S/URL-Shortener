@@ -22,7 +22,8 @@ class Create(Resource):
         shortened_url = create_short_url(original_url)
         return {'short_url': shortened_url}, 201
 
-@url_bp.route('/api/<shortened_url>', endpoint='redirect')
-class Redirect(Resource):
-    def get(self, shortened_url):
+@url_bp.route('/api/', endpoint='redirectArgument')
+class RedirectArgument(Resource):
+    def get(self):
+        shortened_url = request.args.get('shortened_url')
         return redirect_to_original(shortened_url)
